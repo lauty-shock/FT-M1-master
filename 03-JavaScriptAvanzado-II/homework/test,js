@@ -1,0 +1,12 @@
+function Crearcontador(){
+    contador = 0;
+
+    return function incrementar(){
+      contador++;
+      console.log(contador);
+    }
+  }
+
+  const contador1 = Crearcontador();
+  contador1();
+  contador1();

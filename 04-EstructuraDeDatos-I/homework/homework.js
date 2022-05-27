@@ -1,5 +1,7 @@
 'use strict'
 
+const { arrayReplaceAt } = require("markdown-it/lib/common/utils");
+
 /*
 Definir las funciones recursivas nFactorial y nFibonacci.
 
@@ -15,9 +17,38 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+  if(n>-1 && n<2){
+    return n;
+  } else {
+    var suma = n*(n-1);
+    n--
+    for(;n>1;){
+      suma = suma*(n-1);
+      n--;
+    }
+  }
+  return suma;
 }
 
 function nFibonacci(n) {
+  // var secuencia=[];
+  // for(let i=0;i<=n;i++){
+  //   if(i>=1){
+  //     secuencia.push(secuencia[i] + secuencia[i-1]);
+  //   }
+  //   else{
+  //     secuencia.push(secuencia[i]+1);
+  //   }
+  // }
+  // return secuencia[n];
+
+  if(n<2){
+    return n;
+  }
+  else if(n<0){
+    return n;
+  }
+  return nFibonacci(n-1)+nFibonacci(n-2);
 }
 
 /*
@@ -29,8 +60,23 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {
-
+class Queue {
+  constructor(){
+    this.elementos = [];
+  }
+  enqueue(valor){
+    this.elementos.push(valor);
+  }
+  dequeue(){
+    if(this.elementos.length == 0){
+      return undefined;
+    }
+    let i = this.elementos.shift();
+    return i;
+  }
+  size(){
+    return this.elementos.length;
+  }
 }
 
 // No modifiquen nada debajo de esta linea

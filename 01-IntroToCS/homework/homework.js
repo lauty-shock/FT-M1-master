@@ -3,13 +3,13 @@
 function BinarioADecimal(num) {
   // tu codigo aca
 
-  // let invertido = num.toString().split('').reverse();
-  // let acum = 0;
-  // for(let i=0; i<num.length;i++){
-  //   acum += Math.pow(num[i], potencia)
-  //   potencia = potencia + 2;
-  // }
-  // return acum;
+  let invertido = num.toString().split('').reverse();
+  let acum = 0;
+  for(let i=0; i<num.length;i++){
+    acum = acum + Math.pow(2, num.length)
+    potencia = potencia + 2;
+  }
+  return acum;
 
   var numArr = num.split('');
   var suma = 0;
@@ -23,6 +23,13 @@ function BinarioADecimal(num) {
 function DecimalABinario(num) {
   // tu codigo aca
 
+  let numero = num;
+  let binario = (numero % 2).toString();
+  for (; numero > 1; ) {
+      numero = parseInt(numero / 2);
+      binario =  (numero % 2) + (binario);
+  }
+  return binario;
 }
 
 

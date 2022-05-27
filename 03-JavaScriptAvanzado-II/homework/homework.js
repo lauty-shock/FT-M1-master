@@ -19,6 +19,19 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+
+  function Crearcontador(){
+    let contador = 0;
+
+    return function incrementar(){
+      contador++;
+      return contador;
+    }
+  }
+
+  const contador1 = Crearcontador();
+  contador1();
+
 }
 
 function cacheFunction(cb) {
