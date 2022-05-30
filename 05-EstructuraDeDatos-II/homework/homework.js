@@ -1,5 +1,7 @@
 "use strict";
 
+const { has } = require("@11ty/eleventy/src/TemplateCache");
+
 /*
 Implementar la clase LinkedList, definiendo los siguientes métodos:
   - add: agrega un nuevo nodo al final de la lista;
@@ -39,14 +41,34 @@ LinkedList.prototype.remove = function(){
     return null;
   }
   else if(current.next === null){
-    let aux = current.next.data;
+    let aux = current.value;
     this.head = null;
     return aux;
   }
-  while(current.next.next === null){
-    let aux = current.next.next.data;
+  else {
+    while(current.next.next){
+      current = current.next;
+    }
+    let aux = current.next.value;
     current.next = null;
     return aux;
+  }
+}
+LinkedList.prototype.search = function(value){
+  if(!this.head) return null;
+  let current = this.head
+  if(typeof value != "function"){
+    while(value != current.value){
+      if(!current.next) return null;
+      current = current.next;
+    }
+    return current.value;
+  }else {
+    while(!value(current.value)){
+      if(!current.next) return null;
+      current = current.next;
+    }
+    return current.value;
   }
 }
 
@@ -65,7 +87,31 @@ La clase debe tener los siguientes métodos:
 Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
 
-function HashTable() {}
+function HashTable() {
+  let numBuckets = new Array(35);
+  HashTable.prototype.hash = function(key){
+    if(typeof key != "string") return TypeError;
+    let suma = 0;
+    for(let i=0;i<key.length;i++){
+      suma = suma + key.charCodeAt(i);
+    }
+    return suma%35;
+  }
+
+  HashTable.prototype.set = function(key,value){
+    let bucket = HashTable.hash(key);
+    numBuckets[bucket] = value;
+  }
+  HashTable.prototype.get = function(key){
+    let bucket = HashTable.hash(key);
+    return numBuckets[bucket];
+  }
+  HashTable.prototype.hasKey = function(key){
+    let aux = HashTable.hash(key);
+    if(numBuckets[aux.key] == key) return true;
+    return false;
+  }
+}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
