@@ -20,18 +20,12 @@ function counter() {
   otroContador()      // 3
    */
 
-  function Crearcontador(){
-    let contador = 0;
+  let contador = 0;
 
-    return function incrementar(){
-      contador++;
-      return contador;
-    }
+  return function(){
+    contador++;
+    return contador;
   }
-
-  const contador1 = Crearcontador();
-  contador1();
-
 }
 
 function cacheFunction(cb) {
@@ -80,8 +74,12 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor = function(){
+  return instructor.nombre;
+}
+let getNombreAlumno = function(){
+  return alumno.nombre;
+}
 
 /*
   Ejercicio 4
