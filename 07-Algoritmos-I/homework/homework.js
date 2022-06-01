@@ -19,6 +19,7 @@ function factorear(num) {
   return array;
 }
 
+
 function bubbleSort(array) {
   // Implementar el método conocido como bubbleSort para ordenar de menor a mayor
   // el array recibido como parámetro
@@ -45,7 +46,16 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i=1;i<array.length;i++){
+    let j= i-1;
+    let aux = array[i];
+    while(j >= 0 && aux < array[j]){
+      array[j+1] = array[j];
+      j--;
+    }
+    array[j+1] = aux;
+  }
+  return array;
 }
 
 
@@ -54,7 +64,18 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i=0;i<array.length;i++){
+    let min = i;
+    for(let j=i+1;j<array.length;j++){
+      if(array[j]<array[min]){
+        min=j;
+      }
+    }
+    let aux = array[i];
+    array[i] = array[min];
+    array[min] = aux;
+  }
+  return array;
 }
 
 
