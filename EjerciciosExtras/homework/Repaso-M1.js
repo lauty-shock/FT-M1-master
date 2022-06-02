@@ -53,7 +53,16 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
-
+    let cur = this.head;
+    let count = 0;
+    while(cur){
+        if(isNaN(Number(cur.value))){
+            cur.value = "Kiricocho";
+            count++
+        }
+        cur = cur.next;
+    }
+    return count;
 }
 
 
@@ -67,7 +76,10 @@ LinkedList.prototype.changeNotNumbers = function(){
 
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
-
+    let result = new Queue();
+    let [arr1, arr2] = [queueOne, queueTwo]
+    let len = Math.min(arr1.length, arr2.length);
+    for(let i=0;i)
 }
 
 
